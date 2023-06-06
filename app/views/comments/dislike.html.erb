@@ -1,0 +1,9 @@
+<h1>Dislike Post</h1>
+
+<p><%= @post.title %></p>
+<p><%= @post.content %></p>
+<p>Dislikes: <%= @post.dislikes %></p>
+
+<%= link_to 'Dislike', dislike_post_path(@post), method: :patch %>
+
+<%= link_to 'Back', @post %>
