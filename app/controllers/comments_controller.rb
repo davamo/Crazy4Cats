@@ -37,20 +37,6 @@ class CommentsController < ApplicationController
     redirect_to @post, notice: 'Comment was successfully destroyed.'
   end
 
-  def like
-    @post = Post.find(params[:id])
-    @post.likes += 1
-    @post.save
-    redirect_to @post
-  end
-
-  def dislike
-    @post = Post.find(params[:id])
-    @post.dislikes += 1
-    @post.save
-    redirect_to @post
-  end
-
   private
 
   def set_post

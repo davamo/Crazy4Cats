@@ -1,9 +1,0 @@
-<h1>Like Post</h1>
-
-<p><%= @post.title %></p>
-<p><%= @post.content %></p>
-<p>Likes: <%= @post.likes %></p>
-
-<%= link_to 'Like', like_post_path(@post), method: :patch %>
-
-<%= link_to 'Back', @post %>
