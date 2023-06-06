@@ -9,4 +9,15 @@ class Post < ApplicationRecord
     likes - dislikes
   end
 
+
+  attribute :title, :string
+  attribute :content, :string
+  attribute :user_id, :string
+  attribute :likes, :string
+  attribute :dislikes, :string
+
+
+
+
+
 end

@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
-  get 'comments/create'
-  get 'comments/edit'
-  get 'comments/update'
-  get 'comments/destroy'
-  get 'posts/index'
-  get 'posts/show'
-  get 'posts/new'
-  get 'posts/create'
-  get 'posts/edit'
-  get 'posts/update'
-  get 'posts/destroy'
-  get 'posts/like'
-  get 'posts/dislike'
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :comments, only: [:create, :edit, :update, :destroy]
+
+  resources :posts do
+    resources :comments, only: [:create]
+    member do
+      patch 'like', to: 'posts#like', as: 'like'
+      patch 'dislike', to: 'posts#dislike', as: 'dislike'
+      get 'like', to: 'posts#like', as: 'like_get'
+      get 'dislike', to: 'posts#dislike', as: 'dislike_get'
+    end
+  end
+
+  root to: redirect('/users/sign_in')
 end

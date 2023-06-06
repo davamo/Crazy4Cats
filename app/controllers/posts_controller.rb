@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comments = @post.comments
   end
 
   def new
@@ -39,16 +40,30 @@ class PostsController < ApplicationController
   end
 
   def like
-    @post.likes += 1
-    @post.save
-    redirect_to @post
+    @post = Post.find(params[:id])
+
+    if @post
+      @post.likes = @post.likes.to_i + 1
+      @post.save
+      redirect_to @post
+    else
+      redirect_to posts_path, alert: 'Post not found'
+    end
   end
 
+
   def dislike
-    @post.dislikes += 1
-    @post.save
-    redirect_to @post
+    @post = Post.find(params[:id])
+
+    if @post
+      @post.dislikes = @post.dislikes.to_i + 1
+      @post.save
+      redirect_to @post
+    else
+      redirect_to posts_path, alert: 'Post not found'
+    end
   end
+
 
   private
 
