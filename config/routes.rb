@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -16,5 +17,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: redirect('/users/sign_in')
+  root "home#index"
 end
