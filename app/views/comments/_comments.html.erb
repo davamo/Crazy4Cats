@@ -2,3 +2,7 @@
   <%= render partial: 'comment', locals: { comment: comment } %>
 <% end %>
 
+
+<% @article.comments.each do |comment| %>
+  <p><strong><%= comment.user.email %>:</strong> <%= comment.content %></p>
+<% end %>
